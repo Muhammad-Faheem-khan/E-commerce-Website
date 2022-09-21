@@ -15,11 +15,12 @@ const NavBar=()=>{
                 <Toolbar>
                     <Typography variant='h6' className={classes.title} color='inherit' >
                         <img src={logo} alt='Commerce.js' height='25px' className={classes.image} />
+                        E-commerce Store
                     </Typography>
                     <div className={classes.grow} />
                     <div className={classes.button}>
                         <IconButton aria-label='Show Cart items' color='inherit'>
-                            <Badge badgeContent={2} color="secondary">
+                            <Badge overlap="rectangular" badgeContent={2} color="secondary">
                                 <ShoppingCart/>
                             </Badge>
                         </IconButton>
