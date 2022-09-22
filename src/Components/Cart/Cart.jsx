@@ -9,8 +9,8 @@ const Cart = ({cart, onClickRemove, onClickUpdate, onClickEmpty}) => {
     const isEmpty = !cart.total_items
 
     const EmptyCart = () => (
-        <Typography component={Link} to='/' variant='subtitle1'> You have no items in your Cart, Start adding items
-        
+        <Typography variant='subtitle1'> You have no items in your Cart,
+        <Link to = "/" className= {classes.link}> Start adding items</Link>!
         </Typography>
     )
     const FilledCart =() =>(

@@ -20,7 +20,7 @@ const NavBar=({items})=>{
                         E-commerce Store
                     </Typography>
                     <div className={classes.grow} />
-                    { location.pathname === "/" && (
+                    { location.pathname ==="/" && (
                     <div className={classes.button}>
                         <IconButton component={Link} to="/cart" aria-label='Show Cart items' color='inherit'>
                             <Badge overlap="rectangular" badgeContent={items.total_items} color="secondary">

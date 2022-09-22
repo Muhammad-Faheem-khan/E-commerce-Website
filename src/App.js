@@ -4,7 +4,7 @@ import Cart from './Components/Cart/Cart'
 import NavBar from './Components/NavBar/NavBar'
 import Products from './Components/Products/Products'
 import {commerce} from './lib/commerce'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
 const App = () => {
@@ -49,17 +49,13 @@ const App = () => {
           <Router>
             <div>
             <NavBar items={cart} />
-              <Switch>
-                  <Router exact path="/">
-                      <Products products={products} onAddToCart = {handleAddToCart}/>
-                  </Router>
-                  <Router exact path= "/cart">
-                      <Cart cart={cart} 
+              <Routes>
+                  <Route exact path="/" element={<Products products={products} onAddToCart = {handleAddToCart}/>} />
+                  <Route exact path= "/cart" element={<Cart cart={cart} 
                       onClickRemove={handleRemoveItem} 
                       onClickUpdate={handleUpdateCartQuantity} 
-                      onClickEmpty={handleEmptyCart}/>
-                  </Router>
-              </Switch>
+                      onClickEmpty={handleEmptyCart}/>} />
+              </Routes>
            </div>
           </Router>
   )
