@@ -5,6 +5,7 @@ import NavBar from './Components/NavBar/NavBar'
 import Products from './Components/Products/Products'
 import {commerce} from './lib/commerce'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Checkout from './Components/CheckoutForm/Checkout/Checkout'
 
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
                       onClickRemove={handleRemoveItem} 
                       onClickUpdate={handleUpdateCartQuantity} 
                       onClickEmpty={handleEmptyCart}/>} />
+                  <Route exact path = '/checkout' element={<Checkout />}  />
               </Routes>
            </div>
           </Router>

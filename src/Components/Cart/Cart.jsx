@@ -28,7 +28,7 @@ const Cart = ({cart, onClickRemove, onClickUpdate, onClickEmpty}) => {
             </div>
             <div>
                 <Button variant='contained' size='large' type='button' className={classes.emptyButton} color='secondary' onClick = {()=> onClickEmpty()}>Empty Cart</Button>
-                <Button variant='contained' size='large' type='button' className={classes.checkoutButton} color='primary'>Checkout</Button>
+                <Button component={Link} to='/checkout' variant='contained' size='large' type='button' className={classes.checkoutButton} color='primary'>Checkout</Button>
             </div>
         </>
     )
