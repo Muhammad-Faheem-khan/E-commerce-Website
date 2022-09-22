@@ -6,7 +6,7 @@ import logo from './logo.jpg'
 import useStyles from './styles'
 
 
-const NavBar=()=>{
+const NavBar=({items})=>{
     const classes = useStyles();
 
     return(
@@ -20,7 +20,7 @@ const NavBar=()=>{
                     <div className={classes.grow} />
                     <div className={classes.button}>
                         <IconButton aria-label='Show Cart items' color='inherit'>
-                            <Badge overlap="rectangular" badgeContent={2} color="secondary">
+                            <Badge overlap="rectangular" badgeContent={items.total_items} color="secondary">
                                 <ShoppingCart/>
                             </Badge>
                         </IconButton>
