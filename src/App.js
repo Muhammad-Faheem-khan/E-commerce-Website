@@ -56,7 +56,7 @@ const App = () => {
                       onClickRemove={handleRemoveItem} 
                       onClickUpdate={handleUpdateCartQuantity} 
                       onClickEmpty={handleEmptyCart}/>} />
-                  <Route exact path = '/checkout' element={<Checkout />}  />
+                  <Route exact path = '/checkout' element={<Checkout cart={cart}/>}  />
               </Routes>
            </div>
           </Router>
