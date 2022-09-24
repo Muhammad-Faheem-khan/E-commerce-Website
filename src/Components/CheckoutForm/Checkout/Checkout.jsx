@@ -9,6 +9,8 @@ import Cart from "../../Cart/Cart";
 const Checkout = ({ cart }) => {
     const [activeStep, setactiveStep] = useState(0);
     const [checkoutToken, setcheckoutToken] = useState(null);
+    const [shippingData, setshippingData] = useState('')
+
     const classes = useStyles()
     const steps =['Shipping address', 'Payment Plan']
 
@@ -23,11 +25,18 @@ const Checkout = ({ cart }) => {
                 
             }
         }
-
         generateToken();
 },[cart])
 
-    const Form =()=> activeStep===0 ? <AddressForm checkoutToken={checkoutToken}/> : <PaymentForm />
+    const nextStep=()=> setactiveStep((previousstate)=>previousstate+1)
+    const backStep=()=> setactiveStep((previousstate)=>previousstate-1)
+    const next =(data)=>{
+            setshippingData(data)
+            nextStep()
+    }
+
+    const Form =()=> activeStep===0 ? <AddressForm checkoutToken={checkoutToken} next={next} />
+     : <PaymentForm shippingData={shippingData} backStep={backStep} checkoutToken={checkoutToken}/>
     const Confirmation=()=>(
         <div>
             Confirmation

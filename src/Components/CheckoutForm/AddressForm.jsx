@@ -1,17 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import {Grid, Button, MenuItem, Typography, Select, TextField, InputLabel} from '@material-ui/core'
 import { commerce } from '../../lib/commerce'
+import {Link} from 'react-router-dom'
+import { FormProvider, useForm } from 'react-hook-form'
 
 
 
 
-const AddressForm = ({checkoutToken}) => {
+const AddressForm = ({checkoutToken, next}) => {
 const [shippingCountries, setshippingCountries] = useState([])
 const [shippingCountry, setshippingCountry] = useState('')
 const [shippingSubdivisions, setshippingSubdivisions] = useState([])
 const [shippingSubdivision, setshippingSubdivision] = useState('')
 const [shippingOptions, setshippingOptions] = useState([])
 const [shippingOption, setshippingOption] = useState('')
+
+const methods = useForm()
 
 const countries = Object.entries(shippingCountries).map(([code, name])=> ({ id: code, label:name}))
 const subdivisions = Object.entries(shippingSubdivisions).map(([code, name])=> ({ id: code, label:name})) 
@@ -51,8 +55,8 @@ useEffect(()=>{
   return (
     <>
         <Typography variant='h6' gutterBottom align='center'>Shipping Address</Typography>
-        
-            <form onSubmit=''>
+        <FormProvider {...methods}>
+            <form onSubmit= {methods.handleSubmit((data)=> next({...data, shippingCountry, shippingSubdivision, shippingOption}))}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                     <TextField name='fname' required variant='standard' label='First Name'/>
@@ -104,8 +108,13 @@ useEffect(()=>{
                         </Select>
                     </Grid>
                 </Grid>
-
+                <br/>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <Button variant='outlined' component={Link} to='/cart'>Back to Cart</Button>
+                    <Button variant='contained' type='submit' color="primary">Next</Button>
+                </div>
             </form>
+            </FormProvider>
     </>
   )
 }
