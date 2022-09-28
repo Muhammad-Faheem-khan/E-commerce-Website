@@ -1,12 +1,10 @@
-import { Paper, Stepper, Step, StepLabel, Typography, Divider, Button } from "@material-ui/core";
+import { Paper, Stepper, Step, StepLabel, Typography, } from "@material-ui/core";
 import React, {useState, useEffect} from 'react'
 import {commerce} from '../../../lib/commerce'
 import useStyles from './style'
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import Confirmation from "./Confirmation";
-import Cart from "../../Cart/Cart";
-import {Link} from 'react-router-dom'
 
 
 

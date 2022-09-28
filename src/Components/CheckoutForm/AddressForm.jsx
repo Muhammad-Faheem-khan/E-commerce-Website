@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {Grid, Button, MenuItem, Typography, Select,  InputLabel, Input} from '@material-ui/core'
 import { commerce } from '../../lib/commerce'
 import {Link} from 'react-router-dom'
-import { FormProvider, useForm } from 'react-hook-form'
 
 
 
@@ -50,9 +49,8 @@ const handleInfo=(e)=>{
         zip: e.target.zip.value,
         city: e.target.city.value
     }
-    
+    console.log(data1)
     dataCollector(data1)
-    e.target.reset();
 }
 
 
@@ -62,7 +60,7 @@ const handleInfo=(e)=>{
     <>
         <Typography variant='h6' gutterBottom align='center'>Shipping Address</Typography>
        
-            <form onSubmit= {(e)=>{ handleInfo(e)} }>
+            <form onSubmit= { handleInfo}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                     <Input name='fname' type='text' required  placeholder='First Name*'/>

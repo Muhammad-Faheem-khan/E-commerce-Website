@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import useStyles from './style'
 
-const Confirmation = ({error}) => {
-    let timerON = true;
+const Confirmation = () => {
+    
     const classes = useStyles()
     const [part, setPart] = useState(0)
         setTimeout(()=> {

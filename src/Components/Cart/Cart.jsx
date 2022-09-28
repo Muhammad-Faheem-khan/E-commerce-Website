@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Typography, Button, Grid} from '@material-ui/core'
+import { Typography, Button, Grid} from '@material-ui/core'
 import useStyles from './style'
 import CartItems from './CartItems/CartItems'
 import {Link} from 'react-router-dom'
