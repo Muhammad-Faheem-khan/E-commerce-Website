@@ -2,8 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  
+  
+
   title: {
-    marginTop: '5%',
+    marginTop: '10%',
   },
   emptyButton: {
     minWidth: '150px',
@@ -26,9 +29,12 @@ export default makeStyles((theme) => ({
     width: '100%',
     justifyContent: 'space-between',
   },
-  heading: {
-    marginTop: '20px',
-    marginBottom: '20px'
-  },
+  container: {
+    width: '75%',
+    position: 'relative',
+ 
+    left: '12.5%',
+  }
+  
   
 }));

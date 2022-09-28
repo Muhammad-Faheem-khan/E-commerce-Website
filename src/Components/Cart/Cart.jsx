@@ -16,6 +16,7 @@ const Cart = ({cart, onClickRemove, onClickUpdate, onClickEmpty}) => {
     const FilledCart =() =>(
 
         <>
+        
             <Grid container  spacing={3}>
                 { cart.line_items.map((item)=> (
                     <Grid item xs={12} sm={6} md={4} key={item.id}>
@@ -30,13 +31,18 @@ const Cart = ({cart, onClickRemove, onClickUpdate, onClickEmpty}) => {
                 <Button variant='contained' size='large' type='button' className={classes.emptyButton} color='secondary' onClick = {()=> onClickEmpty()}>Empty Cart</Button>
                 <Button component={Link} to='/checkout' variant='contained' size='large' type='button' className={classes.checkoutButton} color='primary'>Checkout</Button>
             </div>
+            
         </>
     )
 
   return (
-    <div className={classes.toolbar}>
-    <Typography variant='h3' className={classes.title}> Your Shopping Cart</Typography>
+    
+    <div className={classes.toolbar } >
+
+    <Typography variant='h3' align='center' gutterBottom className={classes.title}> Your Shopping Cart</Typography>
+    <div className={classes.container}>
       { isEmpty ? <EmptyCart /> : <FilledCart />}
+    </div>
     </div>
   )
 }
