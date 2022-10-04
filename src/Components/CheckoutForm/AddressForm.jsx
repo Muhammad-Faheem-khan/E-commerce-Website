@@ -1,36 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {Grid, Button, MenuItem, Typography, Select,  InputLabel, Input} from '@material-ui/core'
-import { commerce } from '../../lib/commerce'
 import {Link} from 'react-router-dom'
 
-const provinceList = ['Punjab', 'Sindh', 'Khyber_Pakhtunkhwa', 'Balochistan', 'Islamabad Capital Territory']
-const citiesList = {
-    Punjab: [ 'Lahore', 'Rawalpindi', 'faislabad', 'Kasoor', 'Sialkot'],
-    Sindh: ['Karachi', 'Larkana', 'hyderabad', 'Sukkur'],
-    Balochistan: ['Quetta', 'Hub', 'Turbat', 'Khuzdar'],
-    khyber_Pakhtunkhwa: ['Peshawar', 'Mardan', 'Mingora', 'Sawabi']
-}
+const AddressForm = ({checkoutToken, dataCollector, shippingProvince, setshippingProvince,setshippingCity, 
+    shippingCities, shippingCity, provinceList}) => {
 
-
-const AddressForm = ({checkoutToken, dataCollector}) => {
-
-const [shippingProvincess, setshippingProvincess] = useState([])
-const [shippingProvince, setshippingProvince] = useState('')
-const [shippingCities, setshippingCities] = useState({})
-const [shippingCity, setshippingCity] = useState([])
-
-
-    setshippingProvincess(provinceList)
-    setshippingProvince(shippingProvincess[0])
-
-useEffect(()=>{
-   if(shippingProvince) 
-   {
-   setshippingCities(citiesList.shippingProvince)
-   setshippingCity(shippingCities[0])
-}
-}, [shippingProvince])
-
+    
 const handleInfo=(e)=>{
     e.preventDefault()
     const data1 =
@@ -47,6 +22,8 @@ const handleInfo=(e)=>{
     console.log(data1)
     dataCollector(data1)
 }
+let city='';
+let province='';
 
 
 
@@ -78,7 +55,8 @@ const handleInfo=(e)=>{
                     
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Province</InputLabel>
-                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingProvince(e.target.value)}>
+                        <Select  value={shippingProvince} required fullWidth onChange={(e)=> setshippingProvince(e.target.value  )
+                        }>
                             {provinceList.map((province)=>(
                                 <MenuItem key={province} value={province}>
                                 {province}
@@ -88,9 +66,11 @@ const handleInfo=(e)=>{
                         </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Cities</InputLabel>
-                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingCity(e.target.value)}>
+                        <Select  value = {shippingCity} required fullWidth onChange={(e)=>  setshippingCity(e.target.value )
+                       
+                        }>
                             {shippingCities.map((city)=> 
-                            <MenuItem key={city} value={city}>
+                            <MenuItem key={city} value={city }>
                                 {city}
                             </MenuItem>)}
                         </Select>

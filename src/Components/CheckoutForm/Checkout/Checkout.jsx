@@ -19,6 +19,25 @@ const Checkout = ({ cart, error, refreshCart }) => {
       });
     const classes = useStyles()
     const steps =['Shipping address', 'Payment Plan']
+    const [shippingProvince, setshippingProvince] = useState('')
+    const [shippingCities, setshippingCities] = useState([])
+    const [shippingCity, setshippingCity] = useState([])
+
+    const provinceList = ['Punjab', 'Sindh', 'Khyber_Pakhtunkhwa', 'Balochistan', 'Islamabad Capital Territory']
+    const citiesList = [ [ 'Lahore', 'Rawalpindi', 'faislabad', 'Kasoor', 'Sialkot'],
+                         ['Karachi', 'Larkana', 'hyderabad', 'Sukkur'],
+                         ['Peshawar', 'Mardan', 'Mingora', 'Sawabi'],
+                         ['Quetta', 'Hub', 'Turbat', 'Khuzdar'], ['Main City'] ]
+                        
+    
+
+     useEffect(()=>{
+     if(shippingProvince) 
+        {
+        setshippingCities(citiesList[provinceList.indexOf(shippingProvince)])
+         console.log(shippingCities)
+                        }},[shippingProvince])
+                        
 
     useEffect(()=>{
         const generateToken = async ()=>{
@@ -63,8 +82,15 @@ const Checkout = ({ cart, error, refreshCart }) => {
                 .catch((err) => {
                   console.log('FAILED...', err);
                 })}
-    
-    const Form =()=> activeStep===0 ? <AddressForm checkoutToken={checkoutToken}  dataCollector={next} />
+
+    const Form =()=> activeStep===0 ? <AddressForm checkoutToken={checkoutToken}  
+    shippingProvince={shippingProvince}
+    setshippingProvince={setshippingProvince}
+    shippingCities={shippingCities}
+    shippingCity={shippingCity}
+    setshippingCity={setshippingCity}
+    provinceList={provinceList}
+    dataCollector={next} />
      : <PaymentForm checkoutToken={checkoutToken}
      refreshCart={refreshCart}
      backStep={backStep} 
