@@ -24,12 +24,14 @@ const Cart = ({cart, onClickRemove, onClickUpdate, onClickEmpty}) => {
                     </Grid>
                 ))}
             </Grid>
-            <div className={classes.cartDetails}>
-                <Typography variant='h4'>Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
-            </div>
-            <div>
-                <Button variant='contained' size='large' type='button' className={classes.emptyButton} color='secondary' onClick = {()=> onClickEmpty()}>Empty Cart</Button>
-                <Button component={Link} to='/checkout' variant='contained' size='large' type='button' className={classes.checkoutButton} color='primary'>Checkout</Button>
+            <div className={classes.cartBottomElements}>
+                <div className={classes.cartDetails}>
+                    <Typography variant='h4'>Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+                </div>
+                <div className={classes.cartButtons}>
+                    <Button variant='contained' size='large' type='button' className={classes.emptyButton} color='secondary' onClick = {()=> onClickEmpty()}>Empty Cart</Button>
+                    <Button component={Link} to='/checkout' variant='contained' size='large' type='button' className={classes.checkoutButton} color='primary'>Checkout</Button>
+                </div>
             </div>
             
         </>

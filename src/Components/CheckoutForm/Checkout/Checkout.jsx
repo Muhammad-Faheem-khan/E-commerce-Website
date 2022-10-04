@@ -17,7 +17,6 @@ const Checkout = ({ cart, error, refreshCart }) => {
         message: '',
         reply_to: '',
       });
-
     const classes = useStyles()
     const steps =['Shipping address', 'Payment Plan']
 
@@ -25,8 +24,6 @@ const Checkout = ({ cart, error, refreshCart }) => {
         const generateToken = async ()=>{
             try {
                 const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'})
-
-                console.log(token)
                 setcheckoutToken(token)
             } catch (error) {
                 
@@ -47,8 +44,9 @@ const Checkout = ({ cart, error, refreshCart }) => {
             setToSend({
                 from_name: 'E-store',
                 to_name: shippingData.firstName + " " +shippingData.lastName,
-                message: `We have recieved your order of ${cart.line_items.map((item)=> item.name, + " " )}`,
-                reply_to: shippingData.email,
+                message: `We have recieved your order of ${cart.line_items.map((item)=>  ` \n item.name \n` )}. Hopefully, 
+                it will deliver soon. Your total bill is: &{cart.subtotal.formatted_with_symbol}`,
+                reply_to: shippingData.email, 
               });
     }},[shippingData])
 
@@ -88,7 +86,7 @@ const Checkout = ({ cart, error, refreshCart }) => {
                             </Step>
                         ))}
                     </Stepper>
-                      {  activeStep === steps.length ? <Confirmation error={error} /> : checkoutToken && <Form />}
+                      {  activeStep === steps.length ? <Confirmation error={error} /> :  checkoutToken && <Form />}
                 </Paper>
             </main>
     </>

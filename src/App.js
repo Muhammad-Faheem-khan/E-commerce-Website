@@ -23,6 +23,7 @@ const App = () => {
     const cart = await commerce.cart.retrieve()
     setcart(cart)
   }
+  console.log(cart)
 
   const handleAddToCart = async (productId, quantity) =>{
     setcart(await commerce.cart.add(productId, quantity))
@@ -53,7 +54,6 @@ const App = () => {
     fetchCart();
   }, [])
 
-  console.log(cart)
   return (
           <Router>
             <div>

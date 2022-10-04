@@ -15,16 +15,16 @@ const NavBar=({items})=>{
         <>
             <AppBar position='fixed' className={classes.appbar} color='inherit'>
                 <Toolbar>
-                    <Typography component={Link} to="/" variant='h6' className={classes.title} color='inherit' >
-                        <img src={logo} alt='Commerce.js' height='25px' className={classes.image} />
+                    <Typography component={Link} to="/" variant='h5' className={classes.title} color='inherit' >
+                        <img src={logo} alt='Commerce.js' height='40px' className={classes.image} />
                         E-commerce Store
                     </Typography>
                     <div className={classes.grow} />
                     { location.pathname ==="/" && (
                     <div className={classes.button}>
-                        <IconButton component={Link} to="/cart" aria-label='Show Cart items' color='inherit'>
+                        <IconButton component={Link} to="/cart" aria-label='Show Cart items' size='medium' color='inherit'>
                             <Badge overlap="rectangular" badgeContent={items.total_items} color="secondary">
-                                <ShoppingCart/>
+                                <ShoppingCart fontSize='large'/>
                             </Badge>
                         </IconButton>
                     </div>

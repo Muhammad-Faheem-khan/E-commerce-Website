@@ -23,18 +23,27 @@ export default makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
   },
-  cartDetails: {
-    display: 'flex',
-    marginTop: '10%',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
+  
   container: {
     width: '75%',
     position: 'relative',
  
     left: '12.5%',
-  }
+  },
+  cartBottomElements: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+
+  },
+  cartButtons: {
+ marginTop: '15px',
+ marginBottom: '20px'
+  },
+  cartDetails: {
+    marginTop: '30px',
+  },
+
   
   
 }));

@@ -15,7 +15,7 @@ const CartItems = ({ item, onClickUpdate, onClickRemove }) => {
             </CardContent>
 
         <CardActions className={classes.cardActions}>
-            <div className={classes.buttons}>
+            <div className={classes.buttons} >
             <Button type='button' size='small' onClick={()=> onClickUpdate(item.id, item.quantity - 1)}>-</Button>
             <Typography>{item.quantity}</Typography>
             <Button type='button' size='small' onClick={()=>onClickUpdate(item.id, item.quantity + 1)}>+</Button>

@@ -3,51 +3,46 @@ import {Grid, Button, MenuItem, Typography, Select,  InputLabel, Input} from '@m
 import { commerce } from '../../lib/commerce'
 import {Link} from 'react-router-dom'
 
-
+const provinceList = ['Punjab', 'Sindh', 'Khyber_Pakhtunkhwa', 'Balochistan', 'Islamabad Capital Territory']
+const citiesList = {
+    Punjab: [ 'Lahore', 'Rawalpindi', 'faislabad', 'Kasoor', 'Sialkot'],
+    Sindh: ['Karachi', 'Larkana', 'hyderabad', 'Sukkur'],
+    Balochistan: ['Quetta', 'Hub', 'Turbat', 'Khuzdar'],
+    khyber_Pakhtunkhwa: ['Peshawar', 'Mardan', 'Mingora', 'Sawabi']
+}
 
 
 const AddressForm = ({checkoutToken, dataCollector}) => {
 
-const [shippingCountries, setshippingCountries] = useState([])
-const [shippingCountry, setshippingCountry] = useState('')
-const [shippingSubdivisions, setshippingSubdivisions] = useState([])
-const [shippingSubdivision, setshippingSubdivision] = useState('')
+const [shippingProvincess, setshippingProvincess] = useState([])
+const [shippingProvince, setshippingProvince] = useState('')
+const [shippingCities, setshippingCities] = useState({})
+const [shippingCity, setshippingCity] = useState([])
 
 
-const countries = Object.entries(shippingCountries).map(([code, name])=> ({ id: code, label:name}))
-const subdivisions = Object.entries(shippingSubdivisions).map(([code, name])=> ({ id: code, label:name})) 
-
-const fetchCountries= async (checkoutTokenId) =>{
-    const response = await commerce.services.localeListShippingCountries(checkoutTokenId)
-    setshippingCountries(response.countries)
-    setshippingCountry(Object.keys(shippingCountries)[0])
-}
-
-const fetchSubdivisions= async (checkoutTokenId, countryCode) =>{
-    const response = await commerce.services.localeListShippingSubdivisions(checkoutTokenId, countryCode)
-    setshippingSubdivisions(response.subdivisions)
-    setshippingSubdivision(Object.keys(shippingSubdivisions)[0])
-}
+    setshippingProvincess(provinceList)
+    setshippingProvince(shippingProvincess[0])
 
 useEffect(()=>{
-    fetchCountries(checkoutToken.id)
-}, [])
-
-useEffect(()=>{
-   if(shippingCountry) fetchSubdivisions(checkoutToken.id, shippingCountry)
-}, [shippingCountry])
+   if(shippingProvince) 
+   {
+   setshippingCities(citiesList.shippingProvince)
+   setshippingCity(shippingCities[0])
+}
+}, [shippingProvince])
 
 const handleInfo=(e)=>{
     e.preventDefault()
     const data1 =
-        {subdivision: shippingSubdivision,
+        {Province: shippingProvince,
+            City_Selected: shippingCity,
             line_items: checkoutToken.line_items,
             firstName: e.target.fname.value,
         lastName: e.target.lname.value,
         address: e.target.address.value,
         email: e.target.email.value,
         zip: e.target.zip.value,
-        city: e.target.city.value
+        city_Entered: e.target.city.value
     }
     console.log(data1)
     dataCollector(data1)
@@ -82,21 +77,21 @@ const handleInfo=(e)=>{
                     </Grid>
                     
                     <Grid item xs={12} sm={6}>
-                        <InputLabel>Shipping Country</InputLabel>
-                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingCountry(e.target.value)}>
-                            {countries.map((country)=>(
-                                <MenuItem key={country.id} value={country.id}>
-                                {country.label}
+                        <InputLabel>Shipping Province</InputLabel>
+                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingProvince(e.target.value)}>
+                            {provinceList.map((province)=>(
+                                <MenuItem key={province} value={province}>
+                                {province}
                                 </MenuItem>
                             ))}
                         </Select>
                         </Grid>
                     <Grid item xs={12} sm={6}>
-                        <InputLabel>Shipping Subdivision</InputLabel>
-                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingSubdivision(e.target.value)}>
-                            {subdivisions.map((subdivision)=> 
-                            <MenuItem key={subdivision.id} value={subdivision.id}>
-                                {subdivision.label}
+                        <InputLabel>Shipping Cities</InputLabel>
+                        <Select defaultValue="" required fullWidth onChange={(e)=> setshippingCity(e.target.value)}>
+                            {shippingCities.map((city)=> 
+                            <MenuItem key={city} value={city}>
+                                {city}
                             </MenuItem>)}
                         </Select>
                     </Grid>
