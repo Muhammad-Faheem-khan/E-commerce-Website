@@ -3,7 +3,6 @@ import {Grid, Typography} from '@material-ui/core'
 
 import Product from './Product/Product'
 import useStyle from './style'
-import style from './style'
 
 
 

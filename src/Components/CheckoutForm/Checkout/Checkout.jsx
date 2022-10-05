@@ -45,7 +45,7 @@ const Checkout = ({ cart, error, refreshCart }) => {
             setToSend({
                 from_name: 'E-store',
                 to_name: shippingData.firstName + " " +shippingData.lastName,
-                message: `We have recieved your order of ${cart.line_items.map((item, i)=> ` (${i +1}) ${item.name} `)}. Hopefully, 
+                message: `We have recieved your order of ${cart.line_items.map((item, i)=> ` [${i+1}] ${item.name} `)}. Hopefully, 
                 it will deliver soon. Your total bill is: ${cart.subtotal.formatted_with_symbol}.
                 Your items will be delivered at ${shippingData.address} ${shippingData.city_Selected} ${shippingData.province}.`,
                 reply_to: shippingData.email, 
