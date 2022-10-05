@@ -20,7 +20,9 @@ const Confirmation = () => {
                   <CircularProgress />
               </div>
                  : (<div>
-                  <Typography variant="h5">Thank you for your Purchase, </Typography>   
+                  <Typography variant="h5" align='center'>Thank you for your Purchase. </Typography>   
+                  <Typography variant="h6" component='div' className={classes.confirmationText} >Hopefully, you will recieve a confirmation email soon.
+                  If you wouldn't recieve email, please contact on 03095561623.</Typography>   
                   <br />
                   <Button variant="outlined" type="button" component={Link} to='/'>Back To Home</Button>
               </div>) }

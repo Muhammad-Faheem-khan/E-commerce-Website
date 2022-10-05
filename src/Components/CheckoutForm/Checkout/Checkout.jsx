@@ -19,32 +19,14 @@ const Checkout = ({ cart, error, refreshCart }) => {
       });
     const classes = useStyles()
     const steps =['Shipping address', 'Payment Plan']
-    const [shippingProvince, setshippingProvince] = useState('')
-    const [shippingCities, setshippingCities] = useState([])
-    const [shippingCity, setshippingCity] = useState([])
-
-    const provinceList = ['Punjab', 'Sindh', 'Khyber_Pakhtunkhwa', 'Balochistan', 'Islamabad Capital Territory']
-    const citiesList = [ [ 'Lahore', 'Rawalpindi', 'faislabad', 'Kasoor', 'Sialkot'],
-                         ['Karachi', 'Larkana', 'hyderabad', 'Sukkur'],
-                         ['Peshawar', 'Mardan', 'Mingora', 'Sawabi'],
-                         ['Quetta', 'Hub', 'Turbat', 'Khuzdar'], ['Main City'] ]
-                        
     
-
-     useEffect(()=>{
-     if(shippingProvince) 
-        {
-        setshippingCities(citiesList[provinceList.indexOf(shippingProvince)])
-         console.log(shippingCities)
-                        }},[shippingProvince])
-                        
-
     useEffect(()=>{
         const generateToken = async ()=>{
             try {
                 const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'})
                 setcheckoutToken(token)
             } catch (error) {
+                console.log('Something went wrong with Cart Token')
                 
             }
         }
@@ -63,8 +45,9 @@ const Checkout = ({ cart, error, refreshCart }) => {
             setToSend({
                 from_name: 'E-store',
                 to_name: shippingData.firstName + " " +shippingData.lastName,
-                message: `We have recieved your order of ${cart.line_items.map((item)=>  ` \n item.name \n` )}. Hopefully, 
-                it will deliver soon. Your total bill is: &{cart.subtotal.formatted_with_symbol}`,
+                message: `We have recieved your order of ${cart.line_items.map((item, i)=> ` (${i +1}) ${item.name} `)}. Hopefully, 
+                it will deliver soon. Your total bill is: ${cart.subtotal.formatted_with_symbol}.
+                Your items will be delivered at ${shippingData.address} ${shippingData.city_Selected} ${shippingData.province}.`,
                 reply_to: shippingData.email, 
               });
     }},[shippingData])
@@ -81,18 +64,15 @@ const Checkout = ({ cart, error, refreshCart }) => {
                 })
                 .catch((err) => {
                   console.log('FAILED...', err);
-                })}
+                })
+                setTimeout(()=>{
+                    refreshCart()
+                },2000)
+            }
 
     const Form =()=> activeStep===0 ? <AddressForm checkoutToken={checkoutToken}  
-    shippingProvince={shippingProvince}
-    setshippingProvince={setshippingProvince}
-    shippingCities={shippingCities}
-    shippingCity={shippingCity}
-    setshippingCity={setshippingCity}
-    provinceList={provinceList}
     dataCollector={next} />
      : <PaymentForm checkoutToken={checkoutToken}
-     refreshCart={refreshCart}
      backStep={backStep} 
      nextStep={nextStep}
      cart={cart}

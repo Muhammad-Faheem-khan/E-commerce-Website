@@ -4,7 +4,7 @@ import { Typography, Button, Divider } from '@material-ui/core'
 import Review from './Review'
 
 
-const PaymentForm = ({checkoutToken, nextStep, handleEmail, refreshCart, backStep}) => {
+const PaymentForm = ({checkoutToken, nextStep, handleEmail,  backStep}) => {
   
   
 
@@ -12,7 +12,6 @@ const PaymentForm = ({checkoutToken, nextStep, handleEmail, refreshCart, backSte
     events.preventDefault();
     nextStep();
     handleEmail()
-    refreshCart()
   }
   return (
     <>

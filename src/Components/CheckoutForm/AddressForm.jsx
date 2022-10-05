@@ -2,15 +2,31 @@ import React, {useState, useEffect} from 'react'
 import {Grid, Button, MenuItem, Typography, Select,  InputLabel, Input} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 
-const AddressForm = ({checkoutToken, dataCollector, shippingProvince, setshippingProvince,setshippingCity, 
-    shippingCities, shippingCity, provinceList}) => {
-
+const AddressForm = ({checkoutToken, dataCollector }) => {
+        const [shippingProvince, setshippingProvince] = useState('')
+        const [shippingCities, setshippingCities] = useState([])
+        const [shippingCity, setshippingCity] = useState([])
+    
+        const provinceList = ['Punjab', 'Sindh', 'Khyber_Pakhtunkhwa', 'Balochistan', 'Islamabad Capital Territory']
+        const citiesList = [ [ 'Lahore', 'Rawalpindi', 'faislabad', 'Kasoor', 'Sialkot'],
+                             ['Karachi', 'Larkana', 'hyderabad', 'Sukkur'],
+                             ['Peshawar', 'Mardan', 'Mingora', 'Sawabi'],
+                             ['Quetta', 'Hub', 'Turbat', 'Khuzdar'], ['Main City'] ]
+                            
+        
+    
+         useEffect(()=>{
+         if(shippingProvince) 
+            {
+            setshippingCities(citiesList[provinceList.indexOf(shippingProvince)])
+             console.log(shippingCities)
+                            }},[shippingProvince])    
     
 const handleInfo=(e)=>{
     e.preventDefault()
     const data1 =
-        {Province: shippingProvince,
-            City_Selected: shippingCity,
+        {province: shippingProvince,
+            city_Selected: shippingCity,
             line_items: checkoutToken.line_items,
             firstName: e.target.fname.value,
         lastName: e.target.lname.value,
@@ -19,14 +35,9 @@ const handleInfo=(e)=>{
         zip: e.target.zip.value,
         city_Entered: e.target.city.value
     }
-    console.log(data1)
+
     dataCollector(data1)
 }
-let city='';
-let province='';
-
-
-
 
   return (
     <>
@@ -55,7 +66,7 @@ let province='';
                     
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Province</InputLabel>
-                        <Select  value={shippingProvince} required fullWidth onChange={(e)=> setshippingProvince(e.target.value  )
+                        <Select  value={shippingProvince } required fullWidth onChange={(e)=> setshippingProvince(e.target.value  )
                         }>
                             {provinceList.map((province)=>(
                                 <MenuItem key={province} value={province}>
@@ -66,7 +77,7 @@ let province='';
                         </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Cities</InputLabel>
-                        <Select  value = {shippingCity} required fullWidth onChange={(e)=>  setshippingCity(e.target.value )
+                        <Select  value = {shippingCity}  required fullWidth onChange={(e)=>  setshippingCity(e.target.value )
                        
                         }>
                             {shippingCities.map((city)=> 

@@ -49,4 +49,12 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  confirmationText: {
+    border: '1px solid #D3D3D3',
+    borderRadius: '5px',
+    margin: '20px',
+    padding: '20px',
+    textAlign: 'center'
+  }
 }));

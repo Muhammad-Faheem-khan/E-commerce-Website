@@ -20,13 +20,23 @@ const App = () => {
   }
 
   const fetchCart = async ()=> {
+    try{
     const cart = await commerce.cart.retrieve()
+    } catch (error) {
+      console.log('Something went wrong with Cart fetching')
+      
+  }
     setcart(cart)
   }
   console.log(cart)
 
   const handleAddToCart = async (productId, quantity) =>{
+    try{
     setcart(await commerce.cart.add(productId, quantity))
+    } catch (error) {
+      console.log('Something went wrong with Products fetching')
+      
+  }
   }
 
   const handleUpdateCartQuantity = async (productId, quantity) =>{
@@ -42,8 +52,12 @@ const App = () => {
   }
 
   const refreshCart = async () =>{
+    try{
     const newCart = await commerce.cart.refresh();
-    setcart(newCart)
+    setcart(newCart)} catch (error) {
+      console.log('Something went wrong with Cart refresh')
+      
+  }
   }
 
 
