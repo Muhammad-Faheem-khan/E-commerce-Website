@@ -24,7 +24,7 @@ const NavBar=({items})=>{
                     <div className={classes.button}>
                         <IconButton component={Link} to="/cart" aria-label='Show Cart items' size='medium' color='inherit'>
                             <Badge overlap="rectangular" badgeContent={items.total_items} color="secondary">
-                                <ShoppingCart fontSize='large'/>
+                                <ShoppingCart fontSize='medium'/>
                             </Badge>
                         </IconButton>
                     </div>

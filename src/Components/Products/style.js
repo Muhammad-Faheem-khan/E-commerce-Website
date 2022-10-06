@@ -8,10 +8,12 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(0),
   },
   productGrid: {
-    width: '90%',
-    position: 'absolute',
-    left: '5%',
-    top: '25%'
+    width: '100%',
+   display: 'flex',
+   alignSelf: 'center',
+   paddingTop: '20px',
+   paddingLeft: theme.spacing(4)
+
 
   },
 

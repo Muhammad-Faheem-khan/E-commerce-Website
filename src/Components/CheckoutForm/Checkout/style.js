@@ -19,9 +19,9 @@ export default makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
+    padding: '5%',
     [theme.breakpoints.down('xs')]: {
-      width: '92%',
+      width: '90%',
       marginTop: 60,
     },
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {

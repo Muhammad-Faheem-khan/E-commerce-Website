@@ -7,6 +7,9 @@ export default makeStyles((theme) => ({
 
   title: {
     marginTop: '10%',
+    '@media (max-Width: 767px)':{
+      paddingTop: '10%'
+    }
   },
   emptyButton: {
     minWidth: '150px',

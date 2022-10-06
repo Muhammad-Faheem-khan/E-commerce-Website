@@ -12,7 +12,7 @@ const Products = ({products, onAddToCart})=> {
     return(
     <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography variant='h3' align='center' className={classes.mainHeading}>Our Products</Typography>
+        <Typography variant='h4' align='center' className={classes.mainHeading}>Our Products</Typography>
         <Grid container justiy="center" spacing={5} className={classes.productGrid}>
                 
             {products.map((product)=> (
